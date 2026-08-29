@@ -27,14 +27,15 @@ public class MinerController : MonoBehaviour
 
         float direction = mousePos.x - transform.position.x; // Разница между позицией мыши и игрока по X
 
-        if ( Mathf.Abs(direction) <= stopZone )
+        if ( Mathf.Abs(direction) <= stopZone ) // Если курсор на персонаже
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Останавливаем перса
         }
         else
         {
-            float moveDirection = Mathf.Sign(direction);
-            rb.linearVelocity = new Vector2(moveDirection * speed, rb.linearVelocity.y);
+            float moveDirection = Mathf.Sign(direction); // Определяет напровление своего движения
+
+            rb.linearVelocity = new Vector2(moveDirection * speed, rb.linearVelocity.y); // "Движение - это жизнь"
         }
     }
 }
