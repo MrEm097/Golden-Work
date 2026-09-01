@@ -13,7 +13,7 @@ public class ShopManager : MonoBehaviour
     [Header("List tools")]
     public ToolSlot[] toolSlots; // Список всех подключеных инструментов
 
-    public void BuyTool(ToolData toolSlots)
+    public void BuyTool(ToolData toolSlots, InventoryManager cost)
     {
 
     }

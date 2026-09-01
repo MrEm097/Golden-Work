@@ -5,6 +5,7 @@ public class G : MonoBehaviour // GameManager
     public static G Instance { get; private set; }
     public InventoryManager Inventory {  get; private set; }
     public ShopManager Shop { get; private set; }
+    public UIManager UI {  get; private set; }
 
     private void Awake()
     {
@@ -16,6 +17,8 @@ public class G : MonoBehaviour // GameManager
             Inventory = GetComponent<InventoryManager>();
 
             Shop = GetComponent<ShopManager>();
+
+            UI = GetComponent<UIManager>();
         }
         else
         {

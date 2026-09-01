@@ -8,7 +8,7 @@ public class InventoryManager : MonoBehaviour
     public void AddGold(int amount) // Добавляет в кашелек золото
     {
         currentGold += amount;
-        Debug.Log($"Заебись {currentGold}");
+        Debug.Log($"Получено {currentGold}");
     }
 
 
