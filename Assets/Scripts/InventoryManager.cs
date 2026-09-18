@@ -13,10 +13,14 @@ public class InventoryManager : MonoBehaviour
 
 
     [Header("Current tool")]
-    public ToolData currentTool;
+    public ToolData toolDamage;
+    public ToolData toolAttack;
+    public ToolData toolSpeed;
+    public ToolData currentTool; // Заглушка
 
     public void UpgradeTool(ToolData newTool)
     {
-        currentTool = newTool;
+        currentTool = newTool; // Замена текущего инстркмента на новое
+        currentGold -= newTool.cost; // Списывание денег
     }
 }
