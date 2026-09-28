@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MinerDigging : MonoBehaviour
@@ -7,11 +8,11 @@ public class MinerDigging : MonoBehaviour
     public float speedAttack; // Задержка в ударе
     private float nextAttackTime = 0f; // Время след. удара
 
-    private void Start()
+    void Update()
     {
-        damageHit = G.Instance.Inventory.currentTool.damage;
+        damageHit = G.Instance.Inventory.toolDamage.damage;
 
-        speedAttack = G.Instance.Inventory.currentTool.speedAttack;
+        speedAttack = G.Instance.Inventory.toolSpeedAttack.speedAttack;
     }
 
     private void OnTriggerStay2D(Collider2D other)

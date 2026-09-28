@@ -2,42 +2,55 @@ using UnityEngine;
 
 public class MinerController : MonoBehaviour
 {
-    [Header("Move")]
-    public float speed; // Скорость епт
-    public float stopZone = 0.3f; // Зона на которой если курсор находится то игрок стоит
+    [Header("Move Settings")]
+    public float stopZone = 0.3f;
+    public float acceleration = 50f; // Сила разгона
+
+    public bool CanMove { get; set; } = true;
 
     private Camera mainCamera;
     private Rigidbody2D rb;
+    private float maxSpeed; // Это твоя скорость из инвентаря
+    private Vector3 targetMousePos;
 
     void Start()
     {
-        speed = G.Instance.Inventory.currentTool.speedMove;
-
         mainCamera = Camera.main;
-
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        Move();
+        maxSpeed = G.Instance.Inventory.toolSpeed.speedMove;
+        targetMousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    private void Move()
+    void FixedUpdate()
     {
-        Vector3 mousePos = mainCamera.ScreenToWorldPoint( Input.mousePosition ); // Позиция мыши на экране
-
-        float direction = mousePos.x - transform.position.x; // Разница между позицией мыши и игрока по X
-
-        if ( Mathf.Abs(direction) <= stopZone ) // Если курсор на персонаже
+        if (!CanMove)
         {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Останавливаем перса
+            // Тормозим, если ходить нельзя (открыт магазин)
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.8f, rb.linearVelocity.y);
+            return;
+        }
+
+        float directionX = targetMousePos.x - transform.position.x;
+
+        if (Mathf.Abs(directionX) > stopZone)
+        {
+            float moveSign = Mathf.Sign(directionX);
+
+            // Рассчитываем, сколько скорости нам нужно добавить до максимума
+            float speedError = (moveSign * maxSpeed) - rb.linearVelocity.x;
+
+            // Прикладываем силу, пропорциональную этой разнице
+            float force = speedError * acceleration;
+            rb.AddForce(new Vector2(force, 0f), ForceMode2D.Force);
         }
         else
         {
-            float moveDirection = Mathf.Sign(direction); // Определяет напровление своего движения
-
-            rb.linearVelocity = new Vector2(moveDirection * speed, rb.linearVelocity.y); // "Движение - это жизнь"
+            // Естественное торможение у курсора без рывков
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.7f, rb.linearVelocity.y);
         }
     }
 }

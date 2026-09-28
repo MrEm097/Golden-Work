@@ -9,12 +9,10 @@ public class UIManager : MonoBehaviour
 
 
     private MinerController mController;
-    private float currentSpeed; 
 
     void Start()
     {
         mController = GameObject.Find("Miner").GetComponent<MinerController>();
-        currentSpeed = mController.speed; // Запоминаем текущую скорость
     }
 
     public void ShowShoppingDoor(bool condition)
@@ -30,7 +28,7 @@ public class UIManager : MonoBehaviour
     {
         shoppingButton.SetActive(false); // Скрывает кнопку Shopping
 
-        mController.speed = 0f; // Чтобы перс не двигался при включеной панели
+        mController.CanMove = false; // Чтобы перс не двигался при включеной панели
 
         assortmentPanel.SetActive(true); // Показывает панель покупок
     }
@@ -39,6 +37,11 @@ public class UIManager : MonoBehaviour
     {
         assortmentPanel.SetActive(false); // Закрывает панель покупок
 
-        mController.speed = currentSpeed; // Возвращает персу движение
+        mController.CanMove = true; // Возвращает персу движение
+    }
+
+    public void ClosePaidButton(GameObject button)
+    {
+        button.SetActive(false);
     }
 }
