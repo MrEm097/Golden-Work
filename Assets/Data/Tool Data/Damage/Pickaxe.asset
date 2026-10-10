@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolType: 0
   priority: 2
-  cost: 10
-  damage: 10
+  cost: 220
+  damage: 15
   speedAttack: 0
   speedMove: 0

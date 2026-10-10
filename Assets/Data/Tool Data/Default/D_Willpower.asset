@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: D_Willpower
   m_EditorClassIdentifier: 
   toolType: 0
+  priority: 0
   cost: 0
   damage: 0
-  speedAttack: 1
+  speedAttack: 1.5
   speedMove: 0

@@ -17,10 +17,15 @@ public class InventoryManager : MonoBehaviour
     [Header("Amount of gold")]
     public int currentGold = 0; // Сколько изначально золота
 
+    void Start()
+    {
+        G.Instance.UI.UpdateGoldDisplay(G.Instance.Inventory.currentGold);
+    }
+
     public void AddGold(int amount) // Добавляет в кашелек золото
     {
         currentGold += amount;
-        Debug.Log($"Получено {currentGold}");
+        G.Instance.UI.UpdateGoldDisplay(currentGold);
     }
 
 
@@ -35,7 +40,6 @@ public class InventoryManager : MonoBehaviour
         // 1. Проверяем баланс
         if (currentGold < selectedTool.cost)
         {
-            Debug.Log("Недостаточно золота!");
             return;
         }
 
@@ -47,6 +51,9 @@ public class InventoryManager : MonoBehaviour
 
         // 4. Обновляем UI всего магазина (скрываем старое, показываем купленное)
         UpdateShopUI();
+
+        // 5. Обновляем счетчик золота в углу экрана
+        G.Instance.UI.UpdateGoldDisplay(currentGold);
     }
 
     // Вспомогательный метод: сохраняет предмет по его типу (из твоего первого скрипта)

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Coal_Data
   m_EditorClassIdentifier: 
   oreName: Coal
-  maxHealth: 10
-  goldReward: 10
+  maxHealth: 500
+  goldReward: 90

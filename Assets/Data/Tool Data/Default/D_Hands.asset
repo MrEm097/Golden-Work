@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: D_Hands
   m_EditorClassIdentifier: 
   toolType: 0
+  priority: 0
   cost: 0
-  damage: 1
+  damage: 2
   speedAttack: 0
   speedMove: 0
