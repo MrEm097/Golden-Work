@@ -117,7 +117,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3581175861887363762}
@@ -268,7 +268,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.95, y: 1}
+  m_Size: {x: 0.99, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &4172982999983483261
 MonoBehaviour:
@@ -283,5 +283,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oreConfig: {fileID: 0}
-  damageStages: []
+  damageStages:
+  - {fileID: -4093620233156422854, guid: 7682946d9cf279947b6736e7b3b3cdea, type: 3}
+  - {fileID: 3686962169364992275, guid: 2dbb63b5793fada4abec3a0c1f384b9c, type: 3}
+  - {fileID: 6261838875085568562, guid: 4270f6757e132874b990b188466b4114, type: 3}
+  - {fileID: 1611970466183296693, guid: d1e0fe47220533a4e806c87fb67f7fe2, type: 3}
+  - {fileID: -2216159162496844675, guid: 788c0e8d74b1e9b41a22469dbe381582, type: 3}
+  - {fileID: -8947952894515898720, guid: d7dfff1f652629b4ab1fd66eed0bd871, type: 3}
+  - {fileID: 581927207526996229, guid: ced7b29de758aed4a9122014f89ba223, type: 3}
+  - {fileID: 642146194206879159, guid: 9194d95db6a6d634fbc78953540c059e, type: 3}
   damageRenderer: {fileID: 3968586745172980751}

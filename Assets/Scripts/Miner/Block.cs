@@ -12,8 +12,6 @@ public class Block : MonoBehaviour
 
     void Start()
     {
-        damageRenderer = GetComponent<SpriteRenderer>();
-
         currentHealth = oreConfig.maxHealth;
 
         UpdateSprite();
