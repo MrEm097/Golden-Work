@@ -17,6 +17,9 @@ public class InventoryManager : MonoBehaviour
     [Header("Amount of gold")]
     public int currentGold = 0; // Сколько изначально золота
 
+    [Header("Miner")]
+    public MinerAnimation minerAnimation; // Анимация шахтера
+
     void Start()
     {
         G.Instance.UI.UpdateGoldDisplay(G.Instance.Inventory.currentGold);
@@ -48,6 +51,8 @@ public class InventoryManager : MonoBehaviour
 
         // 3. Сохраняем купленный предмет в зависимости от его типа
         SaveEquippedTool(selectedTool);
+
+        minerAnimation.Equip(selectedTool); // Обновляем анимацию шахтера
 
         // 4. Обновляем UI всего магазина (скрываем старое, показываем купленное)
         UpdateShopUI();

@@ -25,6 +25,11 @@ public class MinerController : MonoBehaviour
         targetMousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
     }
 
+    void UpdateAnimation()
+    {
+
+    }
+
     void FixedUpdate()
     {
         if (!CanMove)
