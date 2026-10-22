@@ -52,7 +52,8 @@ public class MinerAnimation : MonoBehaviour
         anim.SetTrigger("mine");
 
         if (trailRoutine != null) StopCoroutine(trailRoutine);
-        trailRoutine = StartCoroutine(TrailFlash(speed));
+        if (Current != null && Current.showTrail)
+            trailRoutine = StartCoroutine(TrailFlash(speed));
     }
 
     IEnumerator TrailFlash(float speed) // Включаем и выключаем эмиссию частиц на ToolTip в зависимости от времени анимации
@@ -69,8 +70,8 @@ public class MinerAnimation : MonoBehaviour
         if (tool == null || !tool.showOnMiner) return;
 
         Current = tool;
-        toolRenderer.sprite = tool.handSprite;
-        toolRenderer.enabled = tool.handSprite != null;
+        toolRenderer.sprite = tool.spriteTool;
+        toolRenderer.enabled = tool.spriteTool != null;
 
         anim.runtimeAnimatorController =
             tool.animations != null ? tool.animations : defaultController;
@@ -78,6 +79,4 @@ public class MinerAnimation : MonoBehaviour
         trail.startColor = tool.trailColor;
         trail.endColor = new Color(tool.trailColor.r, tool.trailColor.g, tool.trailColor.b, 0f);
     }
-
-    public void SetWeapon(AnimatorOverrideController c) { anim.runtimeAnimatorController = c; } // Устанавливаем анимации в зависимости от выбранного инструмента
 }

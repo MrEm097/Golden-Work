@@ -52,7 +52,7 @@ public class InventoryManager : MonoBehaviour
         // 3. Сохраняем купленный предмет в зависимости от его типа
         SaveEquippedTool(selectedTool);
 
-        minerAnimation.Equip(selectedTool); // Обновляем анимацию шахтера
+        minerAnimation.Equip(selectedTool); // Обновляем анимацию шахтера и меняем спрайт руки на новый инструмент
 
         // 4. Обновляем UI всего магазина (скрываем старое, показываем купленное)
         UpdateShopUI();
