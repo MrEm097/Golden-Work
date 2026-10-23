@@ -18,7 +18,7 @@ MonoBehaviour:
   damage: 2
   speedAttack: 0
   speedMove: 0
-  showOnMiner: 0
+  showOnMiner: 1
   spriteTool: {fileID: 0}
   animations: {fileID: 0}
   trailColor: {r: 1, g: 1, b: 1, a: 1}

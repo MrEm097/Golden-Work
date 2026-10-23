@@ -19,8 +19,8 @@ MonoBehaviour:
   speedAttack: 0
   speedMove: 0
   showOnMiner: 1
-  spriteTool: {fileID: 0}
-  animations: {fileID: 0}
+  spriteTool: {fileID: -3010401151903113755, guid: 56b4cd7b78a2fd34892703407963741f, type: 3}
+  animations: {fileID: 22100000, guid: d9c392ec4d6dbeb41a9fb22ea4807c6d, type: 2}
   trailColor: {r: 1, g: 1, b: 1, a: 1}
-  hitEffectPrefab: {fileID: 0}
-  showTrail: 1
+  hitEffectPrefab: {fileID: 5189460739334108707, guid: 55dafa3b3124f8b4083ebb12c4f8afc8, type: 3}
+  showTrail: 0
