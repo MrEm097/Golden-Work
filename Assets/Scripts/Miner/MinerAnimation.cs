@@ -31,6 +31,8 @@ public class MinerAnimation : MonoBehaviour
 
     void Update() // Обновляем анимацию в зависимости от скорости персонажа
     {
+        if (PauseMenu.IsPaused) return; // Если игра на паузе, то не обновляем анимацию
+
         float vx = body.linearVelocity.x;
         bool walking = Mathf.Abs(vx) > walkThreshold;
 

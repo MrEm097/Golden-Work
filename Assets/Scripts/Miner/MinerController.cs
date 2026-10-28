@@ -21,7 +21,10 @@ public class MinerController : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenu.IsPaused) return; // Если игра на паузе, то выходим из метода
+
         maxSpeed = G.Instance.Inventory.toolSpeed.speedMove;
+
         targetMousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
     }
 

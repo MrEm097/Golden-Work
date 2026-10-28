@@ -17,6 +17,8 @@ public class MinerDigging : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenu.IsPaused) return; // Если игра на паузе, то выходим из метода
+
         damageHit = G.Instance.Inventory.toolDamage.damage;
 
         speedAttack = G.Instance.Inventory.toolSpeedAttack.speedAttack;

@@ -53,4 +53,6 @@ public class UIManager : MonoBehaviour
             goldText.text = currentGold.ToString();
         }
     }
+
+
 }
