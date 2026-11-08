@@ -49,6 +49,11 @@ public class MinerDigging : MonoBehaviour
         block.TakeDamage(damageHit, G.Instance.Inventory);
 
         MinerAnimation miner = G.Instance.Inventory.minerAnimation;
+        if (miner.Current != null)
+        {
+            G.Instance.Audio.PlayRandom(miner.Current.hitSounds, 0.8f);
+        }
+
         GameObject fx = miner.Current != null ? miner.Current.hitEffectPrefab : null;
         if (fx != null)
             Instantiate(fx, point, Quaternion.identity);

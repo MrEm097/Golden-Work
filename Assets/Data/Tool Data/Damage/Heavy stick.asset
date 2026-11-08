@@ -23,4 +23,10 @@ MonoBehaviour:
   animations: {fileID: 22100000, guid: 9ec682697f6a67b4cb4858d0356a88b7, type: 2}
   trailColor: {r: 1, g: 1, b: 1, a: 1}
   hitEffectPrefab: {fileID: 5189460739334108707, guid: 55dafa3b3124f8b4083ebb12c4f8afc8, type: 3}
+  hitSounds:
+  - {fileID: 8300000, guid: 44ea3ab5f5a315149ac489f63ad8dc44, type: 3}
+  - {fileID: 8300000, guid: d6e0e5dafa2547048a5119aabf70b353, type: 3}
+  - {fileID: 8300000, guid: cac6cbb42e7bcfb45b7aaf1984d0c342, type: 3}
+  - {fileID: 8300000, guid: 544625bf49d520d4cb4aa27f95c56ea9, type: 3}
+  - {fileID: 8300000, guid: e1f0c5e44c45fc543bf1f06dfdc49bd2, type: 3}
   showTrail: 1

@@ -5,8 +5,10 @@ using UnityEngine;
 public class G : MonoBehaviour // GameManager
 {
     public static G Instance { get; private set; }
+
     public InventoryManager Inventory {  get; private set; }
     public UIManager UI {  get; private set; }
+    public MineAudio Audio { get; private set; }
 
     private void Awake()
     {
@@ -19,6 +21,9 @@ public class G : MonoBehaviour // GameManager
 
 
             UI = GetComponent<UIManager>();
+
+
+            Audio = GetComponent<MineAudio>();
         }
         else
         {

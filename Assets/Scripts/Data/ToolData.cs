@@ -20,5 +20,6 @@ public class ToolData : ScriptableObject
     public AnimatorOverrideController animations; // пусто = стандартные анимации
     public Color trailColor = Color.white;        // цвет линий замаха
     public GameObject hitEffectPrefab;            // частицы при ударе
+    public AudioClip[] hitSounds;                 // звуки при ударе
     public bool showTrail;                           // показывать ли линию замаха
 }
