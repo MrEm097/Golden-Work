@@ -4,9 +4,11 @@ public class MineAudio : MonoBehaviour
 {
     [SerializeField] AudioSource source;
 
+    public static bool soundOn = true;
+
     public void Play(AudioClip clip, float volume = 1f)
     {
-        if (clip == null) return;
+        if (!soundOn || clip == null) return;
         source.PlayOneShot(clip, volume);
     }
 

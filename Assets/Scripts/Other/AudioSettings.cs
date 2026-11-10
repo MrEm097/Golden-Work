@@ -5,21 +5,27 @@ public class AudioSettings : MonoBehaviour
 {
     [SerializeField] private Image soundIcon, musicIcon;
     [SerializeField] private Sprite soundOn, soundOff, musicOn, musicOff;
+    [SerializeField] private AudioSource soundSource;
+    private AudioSource musicSource;
 
     private bool soundEnabled = true;
     private bool musicEnabled = true;
 
+    void Start()
+    {
+        musicSource = FindFirstObjectByType<Music>().GetComponent<AudioSource>(); // Необходимо для свизи между сценами    
+    }
     public void ToggleSound()
     {
         soundEnabled = !soundEnabled;
         soundIcon.sprite = soundEnabled ? soundOn : soundOff;
-        // TODO: Реализовать логику включения/выключения ЗВУКА в игре
+        MineAudio.soundOn = soundEnabled;
     }
 
     public void ToggleMusic()
     {
         musicEnabled = !musicEnabled;
         musicIcon.sprite = musicEnabled ? musicOn : musicOff;
-        // TODO: Реализовать логику включения/выключения МУЗЫКИ в игре
+        musicSource.mute = !musicEnabled; // Вкл/Выкл самой музыки
     }
 }
