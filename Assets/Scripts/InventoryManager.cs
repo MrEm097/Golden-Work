@@ -23,6 +23,7 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         G.Instance.UI.UpdateGoldDisplay(G.Instance.Inventory.currentGold);
+        minerAnimation.Equip(toolDamage);
     }
 
     public void AddGold(int amount) // Добавляет в кашелек золото

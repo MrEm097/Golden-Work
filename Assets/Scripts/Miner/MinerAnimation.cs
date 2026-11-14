@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class MinerAnimation : MonoBehaviour
@@ -18,11 +17,10 @@ public class MinerAnimation : MonoBehaviour
 
     static readonly int IsWalking = Animator.StringToHash("isWalking"); // Хэш для параметра анимации "isWalking"
     static readonly int WalkSpeed = Animator.StringToHash("walkSpeed"); // Хэш для параметра анимации "walkSpeed"
+    static readonly int MineSpeed = Animator.StringToHash("mineSpeed");
+    static readonly int Mine = Animator.StringToHash("mine");
 
-    [Header("Swing timing (секунды при скорости 1)")]
-    [SerializeField] float trailStart = 0.2f;  // когда включать линию
-    [SerializeField] float trailEnd = 0.4f;    // когда выключать
-    Coroutine trailRoutine;
+    System.Action onHit; // Делегат, который будет вызван при нанесении удара (для воспроизведения звуков и эффектов)
 
     void Awake() { 
         anim = GetComponent<Animator>(); 
@@ -48,28 +46,25 @@ public class MinerAnimation : MonoBehaviour
         }
     }
 
-    public void PlayMine(float speed)
+    public void PlayMine(float speed, System.Action hitCallback = null)
     {
-        anim.SetFloat("mineSpeed", speed);
-        anim.SetTrigger("mine");
+        if (onHit != null)          // прошлый удар не дошёл до касания
+        {
+            onHit.Invoke();         // не теряем урон
+            onHit = null;
+        }
 
-        if (trailRoutine != null) StopCoroutine(trailRoutine);
-        if (Current != null && Current.showTrail)
-            trailRoutine = StartCoroutine(TrailFlash(speed));
-    }
-
-    IEnumerator TrailFlash(float speed) // Включаем и выключаем эмиссию частиц на ToolTip в зависимости от времени анимации
-    {
-        if (trail == null) yield break;
-        yield return new WaitForSeconds(trailStart / speed);
-        trail.emitting = true;
-        yield return new WaitForSeconds((trailEnd - trailStart) / speed);
-        trail.emitting = false;
+        anim.SetFloat(MineSpeed, speed);
+        anim.SetTrigger(Mine);
+        onHit = hitCallback;
+        TrailOff();
     }
 
     public void Equip(ToolData tool) // Экипируем инструмент, обновляем спрайт и анимации в зависимости от выбранного инструмента
     {
         if (tool == null || !tool.showOnMiner) return;
+
+        TrailOff();
 
         Current = tool;
         toolRenderer.sprite = tool.spriteTool;
@@ -80,5 +75,24 @@ public class MinerAnimation : MonoBehaviour
 
         trail.startColor = tool.trailColor;
         trail.endColor = new Color(tool.trailColor.r, tool.trailColor.g, tool.trailColor.b, 0f);
+    }
+
+    public void TrailOn()
+    {
+        if (trail == null || Current == null || !Current.showTrail) return;
+        trail.Clear();
+        trail.emitting = true;
+    }
+
+    public void TrailOff()
+    {
+        if (trail == null) return;
+        trail.emitting = false;
+    }
+
+    public void HitFx() // момент касания блока
+    {
+        onHit?.Invoke();
+        onHit = null;
     }
 }

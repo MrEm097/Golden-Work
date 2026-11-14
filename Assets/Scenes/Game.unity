@@ -612,8 +612,6 @@ MonoBehaviour:
   trail: {fileID: 1918742152}
   defaultController: {fileID: 9100000, guid: 2ecf3ef939eb65c40aa3ff2ed7717c1d, type: 2}
   toolTip: {fileID: 53800268}
-  trailStart: 0.2
-  trailEnd: 0.4
 --- !u!95 &53800270
 Animator:
   serializedVersion: 7
@@ -1141,7 +1139,7 @@ MonoBehaviour:
   damageHit: 1
   speedAttack: 1
   mineClipLength: 0.5
-  contactTime: 0.3
+  maxAnimSpeed: 2
 --- !u!4 &123714170
 Transform:
   m_ObjectHideFlags: 0
@@ -16584,7 +16582,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.38, y: 0.667}
+  m_Size: {x: 0.938, y: 0.601}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -26041,27 +26039,27 @@ TrailRenderer:
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.19779909
+    widthMultiplier: 0.24761677
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: -1.1079267
-        outSlope: -1.1079267
+        inSlope: -1.006356
+        outSlope: -1.006356
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.3879203
+        inWeight: 0
+        outWeight: 0.1705577
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: -0.70671064
-        outSlope: -0.70671064
+        inSlope: -0.8851898
+        outSlope: -0.8851898
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.18866754
+        inWeight: 0.16018152
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -26103,10 +26101,10 @@ TrailRenderer:
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MinVertexDistance: 0.05
+  m_MinVertexDistance: 0.02
   m_MaskInteraction: 0
   m_Autodestruct: 0
-  m_Emitting: 1
+  m_Emitting: 0
   m_ApplyActiveColorSpace: 1
 --- !u!1001 &1971110333
 PrefabInstance:

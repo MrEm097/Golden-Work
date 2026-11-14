@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class MinerDigging : MonoBehaviour
@@ -10,10 +9,10 @@ public class MinerDigging : MonoBehaviour
 
     [Header("Animation timing")]
     public float mineClipLength = 0.5f; // Длина клипа анимации добычи
-    public float contactTime = 0.3f; // Время контакта с блоком, после которого можно наносить урон
 
-    const float MineClipLength = 0.5f;
-
+    [Header("Animation limits")]
+    public float maxAnimSpeed = 2f;   // выше этой скорости замах плохо читается; подберите на глаз
+    float damageCarry;                // накопление дробного урона
 
     void Update()
     {
@@ -31,28 +30,34 @@ public class MinerDigging : MonoBehaviour
         if (!Input.GetMouseButton(0)) return; // Если не нажата левая кнопка мыши, то выходим из метода
         if (Time.time < nextAttackTime) return; // Если время следующей атаки еще не наступило, то выходим из метода
 
-        nextAttackTime = Time.time + speedAttack;
+        float minSwingTime = mineClipLength / maxAnimSpeed;
+        float swingTime = Mathf.Max(speedAttack, minSwingTime);
+
+        nextAttackTime = Time.time + swingTime;
+
+        float animSpeed = Mathf.Clamp(mineClipLength / swingTime, 0.5f, maxAnimSpeed);
+
+        // всё, что «не влезло» в анимацию, превращаем в урон
+        float hitMultiplier = speedAttack > 0f ? swingTime / speedAttack : 1f;
+        damageCarry += damageHit * hitMultiplier;
+        int dmg = Mathf.FloorToInt(damageCarry);
+        damageCarry -= dmg;
 
         MinerAnimation miner = G.Instance.Inventory.minerAnimation;
-        float animSpeed = speedAttack > 0f ? Mathf.Clamp(mineClipLength / speedAttack, 0.5f, 3f) : 1f;
-        miner.PlayMine(animSpeed);
+        Vector3 point = other.bounds.center;
 
-        // урон и эффект произойдут в момент касания, а не в момент клика
-        StartCoroutine(HitAfter(block, other.bounds.center, contactTime / animSpeed));
+        miner.PlayMine(animSpeed, () => DoHit(block, point, dmg));
     }
 
-    IEnumerator HitAfter(Block block, Vector3 point, float delay)
+    void DoHit(Block block, Vector3 point, int dmg)
     {
-        yield return new WaitForSeconds(delay);
-        if (block == null) yield break;
+        if (block == null) return;
 
         block.TakeDamage(damageHit, G.Instance.Inventory);
 
         MinerAnimation miner = G.Instance.Inventory.minerAnimation;
         if (miner.Current != null)
-        {
             G.Instance.Audio.PlayRandom(miner.Current.hitSounds, 0.8f);
-        }
 
         GameObject fx = miner.Current != null ? miner.Current.hitEffectPrefab : null;
         if (fx != null)
