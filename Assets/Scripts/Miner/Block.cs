@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+    const float MinGoldPercent = 0.5f; // нижняя граница = 50% от потолка руды
+
     [Header("Data of this ore")]
     public OreData oreConfig;
 
@@ -13,20 +15,29 @@ public class Block : MonoBehaviour
     void Start()
     {
         currentHealth = oreConfig.maxHealth;
-
         UpdateSprite();
     }
 
-    public void TakeDamage(int damage, InventoryManager playerInventory)
+    public void TakeDamage(int damage, InventoryManager playerInventory, Vector3 hitPoint)
     {
         currentHealth -= damage;
         UpdateSprite();
 
-        if (currentHealth <= 0)
-        {
-            playerInventory.AddGold(oreConfig.goldReward);
-            Destroy(gameObject);
-        }
+        // Число выпадает один раз: его же начисляем и показываем
+        GetGoldRange(out int min, out int max);
+        int gold = Random.Range(min, max + 1); // у int верхняя граница не включается
+
+        playerInventory.AddGold(gold);
+        FloatingTextSpawner.Instance.Spawn(gold, min, max, hitPoint);
+
+        if (currentHealth <= 0) Destroy(gameObject);
+    }
+
+    // Потолок берём из SO руды, нижняя граница — фиксированная доля от него
+    private void GetGoldRange(out int min, out int max)
+    {
+        max = oreConfig.goldReward;
+        min = Mathf.Min(max, Mathf.Max(1, Mathf.RoundToInt(max * MinGoldPercent)));
     }
 
     private void UpdateSprite() // Обновление спрайта в зависимости от текущего здоровья

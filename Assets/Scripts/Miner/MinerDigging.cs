@@ -14,6 +14,9 @@ public class MinerDigging : MonoBehaviour
     public float maxAnimSpeed = 2f;   // выше этой скорости замах плохо читается; подберите на глаз
     float damageCarry;                // накопление дробного урона
 
+    [Header("Hit Point")]
+    public Vector2 hitPointOffset = new Vector2(0.5f, 0f); // смещение точки попадания относительно центра блока
+
     void Update()
     {
         if (PauseMenu.IsPaused) return; // Если игра на паузе, то выходим из метода
@@ -44,7 +47,7 @@ public class MinerDigging : MonoBehaviour
         damageCarry -= dmg;
 
         MinerAnimation miner = G.Instance.Inventory.minerAnimation;
-        Vector3 point = other.bounds.center;
+        Vector3 point = other.ClosestPoint(transform.position) + hitPointOffset; // ближайшая к шахтёру точка руды
 
         miner.PlayMine(animSpeed, () => DoHit(block, point, dmg));
     }
@@ -53,7 +56,7 @@ public class MinerDigging : MonoBehaviour
     {
         if (block == null) return;
 
-        block.TakeDamage(damageHit, G.Instance.Inventory);
+        block.TakeDamage(dmg, G.Instance.Inventory, point);
 
         MinerAnimation miner = G.Instance.Inventory.minerAnimation;
         if (miner.Current != null)
