@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
 
     private MinerController mController;
     [SerializeField] private TextMeshProUGUI goldText;
+    [SerializeField] private Animator shopDoorAnimator;
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowShoppingDoor(bool condition)
     {
-        Door.SetActive(condition);
+        shopDoorAnimator.SetBool("IsOpen", condition); // Анимация двери
     }
     public void ShowShoppingButton(bool condition)
     {
