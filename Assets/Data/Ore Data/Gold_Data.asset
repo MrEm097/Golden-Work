@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Gold_Data
   m_EditorClassIdentifier: 
   oreName: 
-  maxHealth: 1500
-  goldReward: 200
+  maxHealth: 250
+  goldReward: 10

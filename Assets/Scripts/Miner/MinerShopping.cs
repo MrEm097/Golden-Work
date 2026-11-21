@@ -8,6 +8,8 @@ public class MinerShopping : MonoBehaviour
 
         G.Instance.UI.ShowShoppingDoor(true); // Открытие двери
         G.Instance.UI.ShowShoppingButton(true); // Если перс наткнулся на магаз то всплывает кнопка
+        G.Instance.Tutorial.OnShopVisited();
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

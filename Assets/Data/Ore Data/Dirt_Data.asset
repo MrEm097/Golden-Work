@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Dirt_Data
   m_EditorClassIdentifier: 
   oreName: 
-  maxHealth: 100
-  goldReward: 35
+  maxHealth: 16
+  goldReward: 5

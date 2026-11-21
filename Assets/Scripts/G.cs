@@ -9,6 +9,7 @@ public class G : MonoBehaviour // GameManager
     public InventoryManager Inventory {  get; private set; }
     public UIManager UI {  get; private set; }
     public MineAudio Audio { get; private set; }
+    public TutorialHints Tutorial { get; private set; }
 
     private void Awake()
     {
@@ -24,6 +25,9 @@ public class G : MonoBehaviour // GameManager
 
 
             Audio = GetComponent<MineAudio>();
+
+
+            Tutorial = GetComponent<TutorialHints>();
         }
         else
         {

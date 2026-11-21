@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Dimond_Data
   m_EditorClassIdentifier: 
   oreName: 
-  maxHealth: 4500
-  goldReward: 450
+  maxHealth: 700
+  goldReward: 18

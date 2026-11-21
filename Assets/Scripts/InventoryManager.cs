@@ -20,6 +20,8 @@ public class InventoryManager : MonoBehaviour
     [Header("Miner")]
     public MinerAnimation minerAnimation; // Анимация шахтера
 
+    public static event System.Action<int> GoldChanged;
+
     void Start()
     {
         G.Instance.UI.UpdateGoldDisplay(G.Instance.Inventory.currentGold);
@@ -30,6 +32,7 @@ public class InventoryManager : MonoBehaviour
     {
         currentGold += amount;
         G.Instance.UI.UpdateGoldDisplay(currentGold);
+        GoldChanged?.Invoke(currentGold);
     }
 
 
