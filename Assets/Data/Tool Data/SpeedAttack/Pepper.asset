@@ -16,5 +16,12 @@ MonoBehaviour:
   priority: 1
   cost: 20
   damage: 0
-  speedAttack: 1.2
+  speedAttack: 1
   speedMove: 0
+  showOnMiner: 0
+  spriteTool: {fileID: 0}
+  animations: {fileID: 0}
+  trailColor: {r: 1, g: 1, b: 1, a: 1}
+  hitEffectPrefab: {fileID: 0}
+  hitSounds: []
+  showTrail: 0
